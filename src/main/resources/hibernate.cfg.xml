@@ -1,20 +1,23 @@
-<hibernate-configuration xmlns="http://www.hibernate.org/xsd/hibernate-configuration">
+<?xml version='1.0' encoding='utf-8'?>
+        <!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
     <session-factory>
-        <!-- Database connection settings -->
-        <property name="connection.driver_class">org.h2.Driver</property>
-        <property name="connection.url">jdbc:h2:./data/quizapp</property>
-
-        <!-- sql dialect  -->
+        <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
-        <!-- create the database schema on start up  -->
-        <property name="hbm2ddl.auto">create</property>
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
 
-        <!-- names the annotated entity classes -->
-        <mapping class="com.group15.category.Category" />
-        <mapping class="com.group15.question.Question" />
-        <mapping class="com.group15.answer.Answer" />
-        <mapping class="com.group15.user.User" />
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
 
+        <!-- Set naming strategy -->
+        <property name="hibernate.implicit_naming_strategy">org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl</property>
+
+        <!-- Update the database schema (structure) on startup -->
+        <property name="hbm2ddl.auto">update</property>
     </session-factory>
+
 </hibernate-configuration>

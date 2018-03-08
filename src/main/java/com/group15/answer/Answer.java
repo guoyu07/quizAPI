@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "answer")
 public class Answer extends BaseEntityModel{
 
     @NotNull(message = "You must enter a answer")

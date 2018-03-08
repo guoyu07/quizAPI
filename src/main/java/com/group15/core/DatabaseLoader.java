@@ -36,18 +36,18 @@ public class DatabaseLoader implements ApplicationRunner {
         /*** Test users list ***/
         // these users have standard permissions of read only
         List<User> standardUsers = Arrays.asList(
-                new User("Christopher","Hunter","chunty12","password2" , new String[] {"ROLE_USER"}),
-                new User("Jim","Devin","jdevin201","password3" , new String[] {"ROLE_USER"}),
-                new User("Sarah","Gillan","sgillan1","password4" , new String[] {"ROLE_USER"})
+                new User("Christopher","Hunter","chunty12","password2" , "ROLE_USER"),
+                new User("Jim","Devin","jdevin201","password3" , "ROLE_USER"),
+                new User("Sarah","Gillan","sgillan1","password4" , "ROLE_USER")
         );
         users.save(standardUsers);
         // this user has admin permissions of create read update delete
-        users.save(new User("Michael","Lynch","mlynch202","password1" , new String[]{"ROLE_USER", "ROLE_ADMIN"}));
+        users.save(new User("Michael","Lynch","mlynch202","password1" , "ROLE_ADMIN"));
 
         /*** Test Users List end **/
 
         /*** Category 1 ***/
-        Category category = new Category("Geography", "City and Country Trivia");
+        Category category = new Category("Geography", "City and Country Trivia","#b39ddb");
         categories.save(category);
         // ------------------- //
         /*** Question 1 ***/
@@ -82,7 +82,7 @@ public class DatabaseLoader implements ApplicationRunner {
         /*** Category 1 end ***/
 
         /*** Category 2 ***/
-        Category category2 = new Category("Animals", "Animal Trivia");
+        Category category2 = new Category("Animals", "Animal Trivia","#ffb74d");
         categories.save(category2);
 
         /*** Question 1 of Category 2 ***/

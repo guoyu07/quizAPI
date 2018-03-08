@@ -7,11 +7,12 @@ import com.group15.core.BaseEntityModel;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "question")
 public class Question extends BaseEntityModel {
 
 
@@ -20,6 +21,8 @@ public class Question extends BaseEntityModel {
     @NotNull(message = "You must enter a question title")
     @Size(min = 2 , max = 140, message = "The question title must be between 2 - 140 characters")
     private String title;
+
+    private LocalDateTime dateUploaded = LocalDateTime.now();
 
     @OneToMany(mappedBy = "question" , cascade = CascadeType.ALL)
     private List<Answer> answers;
@@ -71,5 +74,33 @@ public class Question extends BaseEntityModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public LocalDateTime getDateUploaded() {
+        return dateUploaded;
+    }
+
+    public void setDateUploaded(LocalDateTime dateUploaded) {
+        this.dateUploaded = dateUploaded;
+    }
+
+    public String getTimeSinceUploaded() {
+        String unit = "";
+        LocalDateTime now = LocalDateTime.now();
+        long diff;
+        if((diff = ChronoUnit.SECONDS.between(dateUploaded,now)) < 60){
+            unit = "secs";
+        } else if ((diff = ChronoUnit.MINUTES.between(dateUploaded,now)) < 60) {
+            unit = "mins";
+        } else if ((diff = ChronoUnit.HOURS.between(dateUploaded,now)) < 24) {
+            unit = "hours";
+        } else if ((diff = ChronoUnit.DAYS.between(dateUploaded,now)) < 30) {
+            unit = "days";
+        } else if ((diff = ChronoUnit.MONTHS.between(dateUploaded,now)) < 12) {
+            unit = "months";
+        } else{
+            diff = ChronoUnit.YEARS.between(dateUploaded,now);
+        }
+        return String.format("%d %s",diff,unit);
     }
 }

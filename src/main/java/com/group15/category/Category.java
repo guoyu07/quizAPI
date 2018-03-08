@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
 public class Category extends BaseEntityModel {
 
     @NotNull(message = "You must enter a category title")
@@ -23,6 +23,11 @@ public class Category extends BaseEntityModel {
     @NotNull(message = "Please enter a category description")
     @Size(min = 10, max = 140 ,message = "Description must be between 10 - 140 characters ")
     private String description; // A short description of what the category contains
+
+    @NotNull
+    @Pattern(regexp = "#[0-9a-fA-F]{6}")
+    private String colourCode;
+
     @OneToMany(mappedBy = "category" ,cascade = CascadeType.ALL)
     private List<Question> questions; // Every category has a list of questions
 
@@ -31,10 +36,11 @@ public class Category extends BaseEntityModel {
         questions = new ArrayList<>();
     }
 
-    public Category(String title, String description) {
+    public Category(String title, String description, String colourCode) {
         this();
         this.title = title;
         this.description = description;
+        this.colourCode = colourCode;
     }
 
 
@@ -64,5 +70,13 @@ public class Category extends BaseEntityModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getColourCode() {
+        return colourCode;
+    }
+
+    public void setColourCode(String colourCode) {
+        this.colourCode = colourCode;
     }
 }
