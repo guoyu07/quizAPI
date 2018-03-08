@@ -62,20 +62,20 @@ public class DatabaseLoader implements ApplicationRunner {
 
         /*** Question 2 ***/
         Question question2 = new Question("What is the largest country in the world?");
-        question.addAnswer(new Answer("France", false));
-        question.addAnswer(new Answer("China", false));
-        question.addAnswer(new Answer("Russia" , true));
-        question.addAnswer(new Answer("Canada",false));
+        question2.addAnswer(new Answer("France", false));
+        question2.addAnswer(new Answer("China", false));
+        question2.addAnswer(new Answer("Russia" , true));
+        question2.addAnswer(new Answer("Canada",false));
         category.addQuestion(question2);
         questions.save(question2);
         /*** Question 2 end **/
 
         /*** Question 3 ***/
         Question question3 = new Question("What is the smallest country in the world?");
-        question.addAnswer(new Answer("Malta" ,false));
-        question.addAnswer(new Answer("Japan",false));
-        question.addAnswer(new Answer("Iceland", false));
-        question.addAnswer(new Answer("Vatican City",true));
+        question3.addAnswer(new Answer("Malta" ,false));
+        question3.addAnswer(new Answer("Japan",false));
+        question3.addAnswer(new Answer("Iceland", false));
+        question3.addAnswer(new Answer("Vatican City",true));
         category.addQuestion(question3);
         questions.save(question3);
         /*** Question 3 end **/
@@ -87,32 +87,32 @@ public class DatabaseLoader implements ApplicationRunner {
 
         /*** Question 1 of Category 2 ***/
         Question question4 = new Question("What is the largest mammal in the world?");
-        question.addAnswer(new Answer("Elephant" , false));
-        question.addAnswer(new Answer("Blue Whale", true));
-        question.addAnswer(new Answer("Rhino", false));
-        question.addAnswer(new Answer("Giraffe",false));
-        category2.addQuestion(question);
+        question4.addAnswer(new Answer("Elephant" , false));
+        question4.addAnswer(new Answer("Blue Whale", true));
+        question4.addAnswer(new Answer("Rhino", false));
+        question4.addAnswer(new Answer("Giraffe",false));
+        category2.addQuestion(question4);
         questions.save(question4);
         /*** Question 1 end **/
 
         /*** Question 2 ***/
         Question question5 = new Question("What is the fastest Animal on Earth?");
-        question.addAnswer(new Answer("Peregrine Falcon", true));
-        question.addAnswer(new Answer("Cheetah", false));
-        question.addAnswer(new Answer("Antelope" , true));
-        question.addAnswer(new Answer("Brown Hare",false));
-        category2.addQuestion(question2);
+        question5.addAnswer(new Answer("Peregrine Falcon", true));
+        question5.addAnswer(new Answer("Cheetah", false));
+        question5.addAnswer(new Answer("Antelope" , true));
+        question5.addAnswer(new Answer("Brown Hare",false));
+        category2.addQuestion(question5);
         questions.save(question5);
         /*** Question 2 end **/
 
         /*** Question 3 ***/
         Question question6 = new Question("How many legs does a centipede have?");
-        question.addAnswer(new Answer("150" ,false));
-        question.addAnswer(new Answer("50",false));
-        question.addAnswer(new Answer("1000", false));
-        question.addAnswer(new Answer("100",true));
+        question6.addAnswer(new Answer("150" ,false));
+        question6.addAnswer(new Answer("50",false));
+        question6.addAnswer(new Answer("1000", false));
+        question6.addAnswer(new Answer("100",true));
         category2.addQuestion(question6);
-        questions.save(question3);
+        questions.save(question6);
         /*** Question 3 end **/
 
         /*** Category 2 end ***/

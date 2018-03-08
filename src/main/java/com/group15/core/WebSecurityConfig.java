@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 
     // just for testing
-    /**
     @ Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -36,5 +35,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .csrf().disable();
     }
-    **/
 }

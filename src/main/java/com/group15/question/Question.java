@@ -3,6 +3,8 @@ package com.group15.question;
 import com.group15.answer.Answer;
 import com.group15.category.Category;
 import com.group15.core.BaseEntityModel;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +16,6 @@ import java.util.List;
 
 @Entity
 public class Question extends BaseEntityModel {
-
 
     // This is the question that we ask the user
     // For example "What is the capital city of Scotland?"
