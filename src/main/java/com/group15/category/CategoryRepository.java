@@ -21,4 +21,6 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     @Override
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     void delete(@Param("category") Category entity);
+
+
 }
