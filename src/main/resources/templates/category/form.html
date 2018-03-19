@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add A Category</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <!-- michael css -->
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+</head>
+<body>
+    <!-- remember the form needs name atts to be in the request payload for form submit -->
+
+    <!-- we can use th:classappend for adding style if the form has errors check displaying vaild mess -->
+
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" th:href="@{/home}">
+            <img th:src="@{/images/brain.png}" width="30" height="30" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/categories}">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Leaderboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn"/>
+            </form>
+
+        </div>
+    </nav>
+    <!-- header end -->
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <form th:action="@{/categories}" method="post"  th:object="${category}">
+            <h1  class="h3 mb-3 font-weight-normal text-center">Add Category</h1>
+            <label for="catTitle" class="sr-only">Category Title</label>
+            <br/>
+            <input type="text" id="catTitle" th:field="*{title}" class="form-control" placeholder="Category Title" th:required="required"  />
+            <label for="categoryDesc" class="sr-only">Last Name</label>
+            <br/>
+            <input type="text" id="categoryDesc" th:field="*{description}" class="form-control" placeholder="Category Desciption" th:required="required" />
+            <br/>
+            <select  th:field="*{colourCode}" class="form-control">
+                <option value="" disabled="disabled">Category Colour</option>
+                <option th:each="colour : ${colours}" th:value="${colour.hexCode}" th:text="${colour.name}" th:style="|color:${colour.hexCode}|">Aqua</option>
+            </select>
+            <br/>
+            <button type="submit" class="btn btn-lg btn-outline-info btn-block">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

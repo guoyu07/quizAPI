@@ -60,6 +60,7 @@ public class Question extends BaseEntityModel {
         this.category = category;
     }
 
+
     public List<Answer> getAnswers() {
         return answers;
     }

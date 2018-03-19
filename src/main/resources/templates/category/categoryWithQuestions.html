@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <!-- michael css -->
+    <link rel="stylesheet" th:href="@{/main.css}" />
+</head>
+<body>
+
+<!-- header -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" th:href="@{/home}">
+        <img th:src="@{/images/brain.png}" width="30" height="30" alt=""/>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/categories}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn"/>
+        </form>
+
+    </div>
+</nav>
+<!-- header end -->
+
+<h1 class="text-center" th:text="${category.title}"></h1>
+<p  class="text-center" th:text="${category.description}"></p>
+<div class="text-center">
+    <div class="container">
+        <h3 th:text="${questions[1].title}"></h3>
+                <div class="card" th:each="a : ${questions[1].answers}" style="margin-bottom: 10px; padding: 10px;" >
+                    <h4 th:text="${a}"></h4>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-4 ">
+                        <a class="btn btn-outline-info btn-lg">Submit</a>
+                    </div>
+                </div>
+    </div>
+    <div class="container" style="margin-top: 20px;">
+        <p>Category Progress</p>
+        <!-- progress bar -->
+        <div class="progress">
+            <div class="progress-bar" role="progressbar"  aria-valuenow="10"
+                 aria-valuemin="0" th:aria-valuemax="${#list.size(questions)}" style="width:10%;">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

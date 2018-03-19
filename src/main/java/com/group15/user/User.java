@@ -7,15 +7,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User extends BaseEntityModel{
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    @NotNull(message = "First Name needed")
     private String firstName;
+    @NotNull(message = "last name needed")
     private String lastName;
+    @NotNull
     private String username;
     // json ignore means this will never be exposed to the web via teh api
+    @NotNull
     @JsonIgnore
     private String password;
     @JsonIgnore

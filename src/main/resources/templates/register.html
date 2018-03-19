@@ -15,8 +15,6 @@
             margin-top: 40px;
         }
 
-
-
         .formSignIn {
             width: 100%;
             max-width: 330px;
@@ -58,38 +56,48 @@
     <div class="inner">
         <nav class="navbar navbar-light bg-light fixed-top justify-content-center">
             <a class="navbar-brand" href="#">
-                Quiz App
+               Quiz App
             </a>
         </nav>
     </div>
 </header>
 <!-- nav bar end -->
-
+<div class="container">
+    <div th:if="${param.error}" class="alert alert-danger">
+        <h4>Invalid username and/or password.</h4>
+    </div>
+</div>
 <!-- messages -->
 <div class="container">
     <div th:if="${param.error}" class="alert alert-danger">
         <h4>Invalid username and/or password.</h4>
     </div>
-    <div th:if="${param.logout}" class="alert alert-info">
-        <h4>You're now Logged out. Come back soon!</h4>
-    </div>
-    <div th:if="${param.successful}" class="alert alert-success">
-        <h4>Account Created! You can now Login</h4>
-    </div>
 </div>
 <!-- messages end -->
 
 <!-- login form -->
-<form name="f" th:action="@{/login}" method="post" class="formSignIn">
-        <h1  class="h3 mb-3 font-weight-normal">Please Sign in.</h1>
-        <label for="username" class="sr-only">Username</label>
-        <br/>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Username"/>
-        <br/>
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
-            <button type="submit" class="btn btn-lg btn-outline-info btn-block">Log in</button>
-         <p class="mt-5 mb-3 text-muted">No Account? Sign up here</p>
+<form name="f" th:action="@{/users}" method="post" class="formSignIn" th:object="${user}">
+    <h1  class="h3 mb-3 font-weight-normal">Sign Up.</h1>
+    <label for="firstName" class="sr-only">First Name</label>
+    <br/>
+    <input type="text" id="firstName" th:field="*{firstName}" class="form-control" placeholder="First Name" th:required="required"  />
+    <label for="lastName" class="sr-only">Last Name</label>
+    <br/>
+    <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last Name" th:required="required" />
+    <label for="username" class="sr-only">Username</label>
+    <br/>
+    <input type="text" id="username" th:field="*{username}" class="form-control" placeholder="Username" th:required="required" />
+    <br/>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Password" th:required="required" />
+    <!-- quick temp fix only for testing  -->
+    <select th:field="*{roles}">
+        <option value="ROLE_USER">Standard User</option>
+        <option value="ROLE_ADMIN">Admin User</option>
+    </select>
+    <!-- end fix -->
+    <button type="submit" class="btn btn-lg btn-outline-info btn-block">Sign up</button>
+    <a th:href="@{/login}"><p class="mt-5 mb-3 text-muted">Got an Account Already? Sign in here</p></a>
 </form>
 <!-- log in form end -->
 
