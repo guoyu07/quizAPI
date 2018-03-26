@@ -5,6 +5,8 @@ import com.group15.answer.AnswerRepository;
 import com.group15.question.Question;
 import com.group15.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,14 +42,11 @@ public class CategoryController {
     // Get a single category
     @RequestMapping("/category/{id}")
     public String category(@PathVariable Long id, Model model){
-        int counter = 1;
-        model.addAttribute("count",counter);
         Category category = categoryRepository.findOne(id);
         model.addAttribute("category", category);
         // get the questions
-        Iterable<Question> questions = questionRepository.findByCategoryTitle(category.getTitle());
+        Iterable<Question> questions = questionRepository.findByCategoryTitle(category.getTitle(),new PageRequest(1,1));
         model.addAttribute("questions", questions);
-
         return "category/categoryWithQuestions";
     }
 

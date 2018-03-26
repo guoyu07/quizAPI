@@ -88,12 +88,12 @@
     <br/>
     <input type="text" id="username" th:field="*{username}" class="form-control" placeholder="Username" th:required="required" />
     <br/>
+    <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Email" th:required="required" />
     <label for="password" class="sr-only">Password</label>
     <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Password" th:required="required" />
     <!-- quick temp fix only for testing  -->
-    <select th:field="*{roles}">
+    <select th:field="*{roles}" class="hidden">
         <option value="ROLE_USER">Standard User</option>
-        <option value="ROLE_ADMIN">Admin User</option>
     </select>
     <!-- end fix -->
     <button type="submit" class="btn btn-lg btn-outline-info btn-block">Sign up</button>

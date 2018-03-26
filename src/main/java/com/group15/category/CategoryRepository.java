@@ -23,4 +23,6 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     void delete(@Param("category") Category entity);
 
 
+
+
 }

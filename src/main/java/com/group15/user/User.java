@@ -19,6 +19,10 @@ public class User extends BaseEntityModel{
     private String lastName;
     @NotNull
     private String username;
+    @NotNull
+    private String email;
+
+    private int userPoints = 0;
     // json ignore means this will never be exposed to the web via teh api
     @NotNull
     @JsonIgnore
@@ -30,11 +34,12 @@ public class User extends BaseEntityModel{
         super();
     }
 
-    public User(String firstName, String lastName, String username, String password, String roles) {
+    public User(String firstName, String lastName, String username, String email, String password, String roles) {
         this();
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
+        this.email = email;
         setPassword(password);
         this.roles = roles;
     }
@@ -67,6 +72,14 @@ public class User extends BaseEntityModel{
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -77,5 +90,13 @@ public class User extends BaseEntityModel{
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public int getUserPoints() {
+        return userPoints;
+    }
+
+    public void setUserPoints(int userPoints) {
+        this.userPoints = userPoints;
     }
 }

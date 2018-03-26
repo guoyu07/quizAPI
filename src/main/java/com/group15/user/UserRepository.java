@@ -4,6 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.security.AllPermission;
+import java.util.List;
 
 //@  RepositoryRestResource(exported = false)
 public interface UserRepository extends CrudRepository<User, Long> {
@@ -11,4 +12,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     // with the api, for example we don't want someone for to /users and see all our users
 
     User findByUsername(String username);
+
+    List<User> findUsersByUsernameOrderByUserPointsAsc(String username);
+
 }

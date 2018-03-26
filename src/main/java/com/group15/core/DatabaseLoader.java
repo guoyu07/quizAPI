@@ -36,13 +36,13 @@ public class DatabaseLoader implements ApplicationRunner {
         /*** Test users list ***/
         // these users have standard permissions of read only
         List<User> standardUsers = Arrays.asList(
-                new User("Christopher","Hunter","chunty12","password2" , "ROLE_USER"),
-                new User("Jim","Devin","jdevin201","password3" , "ROLE_USER"),
-                new User("Sarah","Gillan","sgillan1","password4" , "ROLE_USER")
+                new User("Christopher","Hunter","chunty12","chunty@email.com","password2" , "ROLE_USER"),
+                new User("Jim","Devin","jdevin201","jd@email.com","password3" , "ROLE_USER"),
+                new User("Sarah","Gillan","sgillan1","sgill@email.com","password4" , "ROLE_USER")
         );
         users.save(standardUsers);
         // this user has admin permissions of create read update delete
-        users.save(new User("Michael","Lynch","mlynch202","password1" , "ROLE_ADMIN"));
+        users.save(new User("Michael","Lynch","mlynch202","mlynch@email.com","password1" , "ROLE_ADMIN"));
 
         /*** Test Users List end **/
 

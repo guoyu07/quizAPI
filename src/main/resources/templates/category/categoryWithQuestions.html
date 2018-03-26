@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <!-- michael css -->
     <link rel="stylesheet" th:href="@{/main.css}" />
+
 </head>
 <body>
 
@@ -46,14 +47,15 @@
 <h1 class="text-center" th:text="${category.title}"></h1>
 <p  class="text-center" th:text="${category.description}"></p>
 <div class="text-center">
-    <div class="container">
-        <h3 th:text="${questions[1].title}"></h3>
-                <div class="card" th:each="a : ${questions[1].answers}" style="margin-bottom: 10px; padding: 10px;" >
-                    <h4 th:text="${a}"></h4>
+    <div class="container" th:each="question : ${questions}" >
+        <h3 th:text="${question.title}"></h3>
+                <div class="card" th:each="a : ${question.getAnswers()}" style="margin-bottom: 10px; padding: 10px;" >
+                    <h4 th:text="${a.getText()}"></h4>
+
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col-4 ">
-                        <a class="btn btn-outline-info btn-lg">Submit</a>
+                        <button class="btn btn-outline-info">Submit Answer</button>
                     </div>
                 </div>
     </div>
@@ -68,6 +70,7 @@
     </div>
 
 </div>
+
 
 
 </body>

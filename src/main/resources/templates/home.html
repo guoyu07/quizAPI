@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset=" UTF-8 "/>
 
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <!-- michael css -->
     <link rel="stylesheet" th:href="@{/main.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -31,7 +32,7 @@
                     <a class="nav-link" th:href="@{/categories}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Leaderboard</a>
+                    <a class="nav-link" th:href="@{/users}">Leaderboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Profile</a>
@@ -47,20 +48,21 @@
 
     <div class="container">
         <div class="jumbotron text-center">
-            <h3>Homepage</h3>
+            <h4 style="display: inline;">Hello, </h4><h4 th:text="${#authentication.getPrincipal().getUsername()}" style="display: inline;"></h4>
             <hr/>
             <p>This is the homepage of a SIGNED IN user. Located at "/home".
                 It would be good to get some ideas on what to display as the default view,
                 for example; should we put a leaderboard snippet here or most recent categories etc.
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <p class="greeting-id">The ID is </p>
+            <p class="greeting-content">The content is </p>
+            </div>
             </p>
         </div>
     </div>
 
 
-
-
 <!-- bootstrap -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

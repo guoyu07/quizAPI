@@ -22,11 +22,11 @@ public class Question extends BaseEntityModel {
     @NotNull(message = "You must enter a question title")
     @Size(min = 2 , max = 140, message = "The question title must be between 2 - 140 characters")
     private String title;
-
     private LocalDateTime dateUploaded = LocalDateTime.now();
 
     @OneToMany(mappedBy = "question" , cascade = CascadeType.ALL)
     private List<Answer> answers;
+
 
     @ManyToOne
     private Category category;
@@ -105,4 +105,5 @@ public class Question extends BaseEntityModel {
         }
         return String.format("%d %s",diff,unit);
     }
+
 }
